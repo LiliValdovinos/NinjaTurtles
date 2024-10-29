@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tortugas Ninja - Colores Representativos</title>
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="TNstyle.css">
+</head>
+<body>
+    <!-- Título de la página -->
+    <h1>¡Las Tortugas Ninja en Acción!</h1>
+
+    <!-- Contenedor con el texto y botones -->
+    <div id="contenedor">
+        <!-- Texto que cambia con el botón "Cowabunga!" -->
+        <p id="miTexto">¡Listo para la aventura!</p>
+
+        <!-- Botones para cambiar el mensaje y color de fondo -->
+        <button onclick="cambiarMensaje()">¡Cowabunga!</button>
+        <button onclick="cambiarColor()">Cambiar Color de Fondo</button>
+    </div>
+
+    <!-- Galería de imágenes de las tortugas, cada una cambia cuando se hace clic -->
+    <div id="galeria">
+        <img src="https://vignette.wikia.nocookie.net/tortugasninja/images/d/d5/Leonardo_2012.png/revision/latest?cb=20190124081903&path-prefix=es" 
+             alt="Leonardo" class="tortuga" 
+             onclick="cambiarImagen(this, 'https://th.bing.com/th/id/R.365aa049492699757c08d25326f0d34c?rik=FYEB4Vc3laEN%2fg&riu=http%3a%2f%2ffc08.deviantart.net%2ffs71%2ff%2f2013%2f313%2f1%2f5%2fall_my_faces_by_leonardo_hamato-d6tkgmz.jpg&ehk=xKlh6RrCQK4V%2f1Di6XLIqGfJD9V3q4cPxf7LaPTLeRs%3d&risl=&pid=ImgRaw&r=0')">
+        
+        <img src="https://th.bing.com/th/id/R.417758b1e37305b0788a91dbbdcd72f5?rik=RrGW4GsXGUy%2bPQ&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20130628020544%2ftortugasninja%2fes%2fimages%2f5%2f5a%2fRaphael.png&ehk=mRAXN6b1nwuvPb%2fflPK5Zg5r%2f5Z4TQ4qLrRpKuRHHmk%3d&risl=&pid=ImgRaw&r=0" 
+             alt="Raphael" class="tortuga" 
+             onclick="cambiarImagen(this, 'https://th.bing.com/th/id/R.5b7b3ba738329f9ce842ef7f2e538411?rik=rH7xMPmfyxTfpg&riu=http%3a%2f%2fpm1.narvii.com%2f5726%2f951aae1fcc8b116cf5a4e3bc8f01c0eb321c609f_00.jpg&ehk=MhdHYlesXPzjQZdTxTDLcMmc2RVNP1TStijaYLQ%2fJV4%3d&risl=&pid=ImgRaw&r=0')">
+        
+        <img src="https://i.pinimg.com/originals/6b/1a/2f/6b1a2f6e4a03b4b7ef802ce2ebad0109.png" 
+             alt="Donatello" class="tortuga" 
+             onclick="cambiarImagen(this, 'https://i.pinimg.com/originals/e8/11/0b/e8110b0822dec364e121da62dc1e85a2.jpg')">
+        
+        <img src="https://th.bing.com/th/id/R.4a6cf2a604e261eb08dd9b98785853e6?rik=30q%2btehzhuLFcw&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20140212044737%2fteenage-mutant-ninja-turtles-2012-series%2fimages%2fthumb%2f0%2f0b%2fTMNT_2012_Michelangelo-13-.png%2f300px-TMNT_2012_Michelangelo-13-.png&ehk=S%2f%2fuohiAJUg6lc36QZluyT8WJ3XzqORlCBX3TyGHPnE%3d&risl=&pid=ImgRaw&r=0" 
+             alt="Michelangelo" class="tortuga" 
+             onclick="cambiarImagen(this, 'https://i.pinimg.com/originals/bc/78/ee/bc78ee896d64c136402394b763587e69.jpg')">
+    </div>
+
+    <script>
+        // Variables para alternar el mensaje y el color
+        let colorAlternativo = false;
+        let coloresFondo = ['#007BFF', '#FFA500', '#D50000', '#6F2C91'];
+        let indiceColor = 0;
+
+        // Cambia el mensaje en el contenedor
+        function cambiarMensaje() {
+            const texto = document.getElementById("miTexto");
+            texto.innerText = colorAlternativo ? "¡Listo para la aventura!" : "¡A luchar contra el mal!";
+            colorAlternativo = !colorAlternativo;
+        }
+
+        // Cambia el color de fondo del contenedor
+        function cambiarColor() {
+            const contenedor = document.getElementById("contenedor");
+            contenedor.style.backgroundColor = coloresFondo[indiceColor];
+            indiceColor = (indiceColor + 1) % coloresFondo.length;
+        }
+
+        // Alterna entre la imagen original y una nueva al hacer clic
+        function cambiarImagen(imagen, nuevaSrc) {
+            const imagenOriginal = imagen.getAttribute("data-original") || imagen.src;
+            
+            if (!imagen.getAttribute("data-original")) {
+                imagen.setAttribute("data-original", imagenOriginal);
+            }
+            
+            imagen.src = imagen.src === imagenOriginal ? nuevaSrc : imagenOriginal;
+        }
+    </script>
+</body>
+</html>
